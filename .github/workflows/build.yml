@@ -49,6 +49,21 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
 
+      - name: Config
+        id: config
+        shell: bash
+        run: |
+          registry="${{ matrix.registry }}"
+          registry=${registry#docker.io}
+          registry=${registry:+$registry/}
+          image="${{ matrix.image }}"
+
+          export registry image
+
+          tags=$(yq '[ .[] | strenv(registry) + strenv(image) + ":" + . ] | @csv ' <<< '${{ matrix.tags }}')
+          
+          echo tags="$tags" >> $GITHUB_OUTPUT
+
       - name: Docker login Build Registry
         uses: docker/login-action@v3
         with:

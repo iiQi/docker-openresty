@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
+if [ -f "/etc/environment" ]; then
+  source "/etc/environment"
+fi
+
 REPLACE_CONF_FILES=${REPLACE_CONF_FILES:+,$REPLACE_CONF_FILES}
 REPLACE_CONF_FILES="/etc/openresty/nginx.conf,/etc/openresty/conf.d/*.conf${REPLACE_CONF_FILES}"
 

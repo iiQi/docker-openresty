@@ -2,7 +2,7 @@
 set -e
 
 REPLACE_CONF_FILES=${REPLACE_CONF_FILES:+,$REPLACE_CONF_FILES}
-REPLACE_CONF_FILES="/usr/local/openresty/nginx/conf/nginx.conf,/etc/nginx/conf.d/*.conf${REPLACE_CONF_FILES}"
+REPLACE_CONF_FILES="/etc/openresty/nginx.conf,/etc/openresty/conf.d/*.conf${REPLACE_CONF_FILES}"
 
 replaceConf() {
   local file=$1

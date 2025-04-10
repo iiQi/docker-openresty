@@ -16,6 +16,7 @@ RUN set -eux; \
     fi; \
     \
     if [ "alpine" = "$(. /etc/os-release && echo "$ID")" ]; then \
+        ln -snf /usr/local/openresty/nginx/conf /etc/openresty; \
         apk add --no-cache bash; \
         { \
             echo "export LS_OPTIONS='--color=auto'"; \

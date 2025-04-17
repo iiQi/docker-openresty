@@ -18,6 +18,7 @@ replaceConf() {
     eval "val=${line}"
 
     if [ -n "$val" ]; then
+      val="$(sed ':a;N;$!ba;s/\n/\\n/g' <<< "$val")"
       sed -i "s#\#*\([^\#]*\)$line#\1$val#g" "$file"
     fi
   done
